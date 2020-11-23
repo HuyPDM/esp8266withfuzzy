@@ -1,0 +1,47 @@
+[System]
+Name='DA2'
+Type='mamdani'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=7
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='eror'
+Range=[-100 100]
+NumMFs=3
+MF1='N':'trimf',[-100 -100 0]
+MF2='Z':'trimf',[-10 0 10]
+MF3='P':'trimf',[0 100 100]
+
+[Input2]
+Name='temperature'
+Range=[-5 50]
+NumMFs=5
+MF1='cold':'trapmf',[-5 -5 8 15]
+MF2='cool':'trimf',[8 18 28]
+MF3='normal':'trimf',[15 25 35]
+MF4='hot':'trimf',[30 35 40]
+MF5='veryhot':'trapmf',[35 43 50 50]
+
+[Output1]
+Name='output1'
+Range=[0 1]
+NumMFs=3
+MF1='hight':'trimf',[0 0 0.5]
+MF2='slow':'trimf',[0.3 0.5 0.9]
+MF3='off':'trimf',[0.8 1 1]
+
+[Rules]
+1 0, 1 (1) : 1
+2 1, 2 (1) : 1
+2 2, 2 (1) : 1
+2 3, 3 (1) : 1
+2 4, 3 (1) : 1
+2 5, 3 (1) : 1
+3 0, 3 (1) : 1
